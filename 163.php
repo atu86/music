@@ -88,11 +88,12 @@ foreach($res as $id){
         $mp3url   = array_pop(json_decode($musicinfo)->songs)->mp3Url;
         $songname = array_pop(json_decode($musicinfo)->songs)->name;
         $songpic  = array_pop(json_decode($musicinfo)->songs)->album->picUrl;
+        $artistname = array_pop(json_decode($musicinfo)->songs)->artists->name;
         $onesong  = array();
         $onesong['name'] = $songname;
         $onesong['songpic'] = $songpic;
         $onesong['mp3url'] = $mp3url;
-
+        $onesong['artistname'] = $artistname;
         array_push($songinfo,$onesong);
 
 
@@ -112,9 +113,12 @@ if($_GET['bd']=1){
         $artistname = $songinfo->artists[0]->name;
         $songpic = $songinfo->album->picUrl;
         $mp3url = $songinfo->mp3Url;
-        array_push($onesongarray,$name,$artistname,$songpic,$mp3url);
+        $onesongarray['name'] = $name;
+        $onesongarray['artistname'] = $artistname;
+        $onesongarray['songpic'] = $songpic;
+        $onesongarray['mp3url'] = $mp3url;
         array_push($newsongarray,$onesongarray);
     }
     echo "<pre>";
     var_dump($newsongarray);
-}   
+}
