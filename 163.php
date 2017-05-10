@@ -76,14 +76,38 @@ foreach($res as $id){
     array_push($idarr,$id->id);
 }
 
-$res = get_music_info(347233);
-echo "<pre>";
-var_dump(array_pop(json_decode($res)->songs)->mp3Url);exit;
+    $songinfo = array();
 
-$songinfo = array();
-foreach($idarr as $id){
-exit;    
-}
+    foreach($idarr as $id){
+       $musicinfo = get_music_info($id);
+        $mp3url   = array_pop(json_decode($musicinfo)->songs)->mp3Url;
+        $songname = array_pop(json_decode($res)->songs)->name;
+        $songpic  = array_pop(json_decode($res)->songs)->album->picUrl;
+        $onesong  = array();
+        $onesong['name'] = $songname;
+        $onesong['songpic'] = $songpic;
+        $onesong['mp3url'] = $mp3url;
+
+        array_push($songinfo,$onesong);
+
+
+    }
+
+    var_dump($songinfo);
+
+
+
+
+
+
+//$res = get_music_info(347233);
+//echo "<pre>";
+//var_dump(array_pop(json_decode($res)->songs)->mp3Url);exit;
+//
+//$songinfo = array();
+//foreach($idarr as $id){
+//
+//}
 
 }
 
