@@ -70,7 +70,7 @@ function get_newsong_info(){
     return curl_get($url);
 }
 
-//搜索歌曲
+//搜索歌曲 如果存在key 为搜索歌曲名
 if(isset($_GET['key'])){
 $key = $_GET['key'];
 $res=music_search($key,1);
@@ -101,7 +101,7 @@ foreach($res as $id){
 }
 
 
-//新歌榜
+//新歌榜 如果bd=1 代表搜索的榜单为新歌榜
 if($_GET['bd']=1){
     $res=get_newsong_info();
     $newsongarray=array();
@@ -117,4 +117,4 @@ if($_GET['bd']=1){
     }
     echo "<pre>";
     var_dump($newsongarray);
-}
+}   
