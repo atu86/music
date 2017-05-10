@@ -65,7 +65,12 @@ function get_music_info($music_id)
     return curl_get($url);
 }
 
-//get songinfo
+function get_newsong_info(){
+    $url = "http://music.163.com/api/playlist/detail?id=3779629";
+    return curl_get($url);
+}
+
+//搜索歌曲
 if(isset($_GET['key'])){
 $key = $_GET['key'];
 $res=music_search($key,1);
@@ -92,24 +97,13 @@ foreach($res as $id){
 
 
     }
-
     var_dump($songinfo);
-
-
-
-
-
-
-//$res = get_music_info(347233);
-//echo "<pre>";
-//var_dump(array_pop(json_decode($res)->songs)->mp3Url);exit;
-//
-//$songinfo = array();
-//foreach($idarr as $id){
-//
-//}
-
 }
 
 
-
+//新歌榜
+if($_GET['bd']=1){
+    $res=get_newsong_info();
+    echo "<pre>";
+    var_dump($res);
+}
