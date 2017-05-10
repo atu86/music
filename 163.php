@@ -104,6 +104,17 @@ foreach($res as $id){
 //新歌榜
 if($_GET['bd']=1){
     $res=get_newsong_info();
+    $newsongarray=array();
+    $res=json_decode(get_newsong_info())->result->tracks;
+    foreach($res as $songinfo){
+        $onesongarray = array();
+        $name = $songinfo->name;
+        $artistname = $songinfo->artists[0]->name;
+        $songpic = $songinfo->album->picUrl;
+        $mp3url = $songinfo->mp3Url;
+        array_push($onesongarray,$name,$artistname,$songpic,$mp3url);
+        array_push($newsongarray,$onesongarray);
+    }
     echo "<pre>";
-    var_dump($res);
+    var_dump($newsongarray);
 }
