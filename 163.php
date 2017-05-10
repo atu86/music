@@ -81,8 +81,8 @@ foreach($res as $id){
     foreach($idarr as $id){
        $musicinfo = get_music_info($id);
         $mp3url   = array_pop(json_decode($musicinfo)->songs)->mp3Url;
-        $songname = array_pop(json_decode($res)->songs)->name;
-        $songpic  = array_pop(json_decode($res)->songs)->album->picUrl;
+        $songname = array_pop(json_decode($musicinfo)->songs)->name;
+        $songpic  = array_pop(json_decode($musicinfo)->songs)->album->picUrl;
         $onesong  = array();
         $onesong['name'] = $songname;
         $onesong['songpic'] = $songpic;
