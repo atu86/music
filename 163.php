@@ -82,7 +82,7 @@ var_dump(array_pop(json_decode($res)->songs)->mp3Url);exit;
 
 $songinfo = array();
 foreach($idarr as $id){
-    
+exit;    
 }
 
 }
